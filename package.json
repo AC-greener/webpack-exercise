@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "file-loader": "^3.0.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   }
