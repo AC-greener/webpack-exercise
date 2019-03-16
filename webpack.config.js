@@ -1,4 +1,6 @@
 const path = require('path')
+const htmlWwebpackPlugin = require('html-webpack-plugin')
+const clean = require('clean-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
@@ -32,7 +34,11 @@ module.exports = {
       },
   ]
   },
+  plugins:[new htmlWwebpackPlugin({
+    template: './index.html'
+  })],
   output: {
+    publicPath: 'htpp://cnd.com',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'bundle')
   }
