@@ -1,9 +1,17 @@
 const path = require('path')
 const htmlWwebpackPlugin = require('html-webpack-plugin')
 const clean = require('clean-webpack-plugin')
+const webpack = require('webpack')
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
+  devtool: 'source-map',
+  devServer: {
+    contentBase: './bundle',
+    open: true,
+    hot: true,
+    hotOnly: true
+  },
   module: {
     rules: [
       {
@@ -34,11 +42,14 @@ module.exports = {
       },
   ]
   },
-  plugins:[new htmlWwebpackPlugin({
-    template: './index.html'
-  })],
+  plugins:[
+    new htmlWwebpackPlugin({
+      template: './index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   output: {
-    publicPath: 'htpp://cnd.com',
+    // publicPath: 'htpp://cnd.com',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'bundle')
   }
