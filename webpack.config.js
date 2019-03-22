@@ -6,6 +6,7 @@ module.exports = {
   mode: 'production',
   entry: './src/index.js',
   devtool: 'source-map',
+  //热模块更新
   devServer: {
     contentBase: './bundle',
     open: true,
@@ -14,6 +15,16 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: "babel-loader",
+        options: {
+          presets: [["@babel/preset-env", {
+            //用到什么  polyfill就增加什么
+            useBuiltIns: 'usage'
+          }]]
+        }
+      },
       {
         test: /\.(jpg|png)$/,
         use: {
